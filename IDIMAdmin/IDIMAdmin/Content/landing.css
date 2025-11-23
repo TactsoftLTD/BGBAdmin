@@ -1,0 +1,248 @@
+@import url("../content/fonts/font-poppins.css");
+
+body {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    background: #791215;
+}
+
+.landing {
+    max-height: 440px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+    .landing:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 80%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: .5;
+        background-image: url('images/landing-back.jpg');
+        content: "";
+        z-index: -1;
+    }
+
+.landing-wrapper {
+    width: 1199px;
+    margin: 0 auto;
+}
+
+.heading-text {
+    margin: 25px 0;
+}
+
+.landing-logo-block {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.heading-text .landing-left-logo {
+    float: left;
+}
+
+.heading-text .landing-logo {
+    text-align: center;
+    line-height: 80px;
+    padding: 0 15px;
+    float: left;
+    font-size: 80px;
+    font-weight: bolder;
+    color: #fff;
+   
+}
+
+.heading-text .landing-right-logo {
+    float: left;
+}
+
+.heading-text p {
+    font-size: 25px;
+    color: #fff;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.heading-text img {
+    max-width: 120px;
+}
+
+.landing-block {
+    width: 18%;
+    background-color: #fff;
+    float: left;
+    padding: 30px 16px;
+    height: 168px;
+    margin: 1%;
+    -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.35);
+    box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.35);
+    -webkit-transition: all .6s;
+    -o-transition: all .6s;
+    transition: all .6s;
+    display: table;
+}
+
+    .landing-block img {
+        max-width: 40px;
+        margin-bottom: 20px;
+    }
+
+    .landing-block p {
+        margin-bottom: 0;
+        color: #747474;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .landing-block a {
+        display: table-cell;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+        .landing-block a:hover {
+            color: #791215;
+        }
+
+    .landing-block i {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .landing-block:hover {
+        -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.55);
+        -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.55);
+        box-shadow: 0px 0px 25px -7px rgba(0,0,0,0.55);
+    }
+
+        .landing-block:hover p {
+            color: #000;
+        }
+
+footer {
+    margin-top: 130px;
+}
+
+    footer .footer-right p {
+        position: relative;
+        padding-right: 40px;
+    }
+
+        footer .footer-right p img {
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+
+    footer .bgb-logo p {
+        position: relative;
+        padding-left: 50px;
+    }
+
+    footer .bgb-logo img {
+        max-width: 40px;
+        position: absolute;
+        left: 0;
+        top: -8px;
+    }
+
+    footer .bgb-logo img {
+        margin-top: 0px;
+    }
+
+    footer .bs-logo p {
+        position: relative;
+        padding-right: 45px;
+        color: #fff;
+    }
+
+    footer .bs-logo a {
+        color: #fff;
+        font-size: 18px;
+    }
+
+    footer .bs-logo p img {
+        max-width: 30px;
+    }
+
+@media(max-width:768px ) {
+    .landing-block {
+        width: 44%;
+        margin: 3%;
+        min-height: 190px;
+    }
+}
+
+@media(max-width: 767px) {
+    .heading-text {
+        margin: 30px 0;
+    }
+
+        .heading-text img {
+            max-width: 100px;
+        }
+
+        .heading-text p {
+            font-size: 14px;
+        }
+
+    .landing-block {
+        width: 44%;
+        margin: 3%;
+        min-height: 190px;
+    }
+
+   .landing {
+        max-height: 100%;
+        padding-bottom: 30px;
+    }
+
+    footer {
+        margin: 30px 0;
+    }
+
+        footer .bgb-logo {
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+            footer .bgb-logo p {
+                position: static;
+                padding-left: 0;
+            }
+
+                footer .bgb-logo p img {
+                    position: static;
+                    margin: 0 auto;
+                    display: block;
+                }
+
+        footer .bs-logo {
+            padding-top: 10px;
+        }
+
+            footer .bs-logo p {
+                padding-right: 0;
+                position: static;
+            }
+
+            footer .bs-logo .text-right {
+                text-align: center;
+            }
+
+            footer .bs-logo p img {
+                position: static;
+                display: block;
+                margin: auto;
+            }
+}

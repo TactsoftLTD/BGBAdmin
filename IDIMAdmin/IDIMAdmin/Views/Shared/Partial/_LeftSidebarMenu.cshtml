@@ -1,0 +1,94 @@
+﻿@using IDIMAdmin.Models.User
+@{
+    var user = ViewBag.User as UserInformation ?? new UserInformation();
+    var menuGroups = user.Menus;
+}
+
+<div class="page-sidebar fixedscroll">
+    <div class="" id="main-menu-wrapper">
+        @*<ul class='wraplist'>
+                <li class='menusection'>Main</li>
+                <li class="">
+                    <a href="@Url.Action("Index","Dashboard")">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class='menusection'>Information</li>
+
+                <li class="">
+                    <a href="@Url.Action("Index","Report")">
+                        <i class="fa fa-area-chart"></i>
+                        <span class="title">Report</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","UserRegiment")">
+                        <i class="fa fa-plus"></i>
+                        <span class="title">Assign Regiment</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","UserMenu")">
+                        <i class="fa fa-plus"></i>
+                        <span class="title">Assign  Menu</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","AssignApplication")">
+                        <i class="fa fa-plus"></i>
+                        <span class="title">Assign  Application</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","AssignDevice")">
+                        <i class="fa fa-plus"></i>
+                        <span class="title">Assign Device</span>
+                    </a>
+                </li>
+
+                <li class='menusection'>Setup</li>
+                <li class="">
+                    <a href="@Url.Action("Index","Application")">
+                        <i class="fa fa-building"></i>
+                        <span class="title">Application</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","Device")">
+                        <i class="fa fa-desktop"></i>
+                        <span class="title">Device</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","Menu")">
+                        <i class="fa fa-bars"></i>
+                        <span class="title">Menu</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index","User")">
+                        <i class="fa fa-users"></i>
+                        <span class="title">User</span>
+                    </a>
+                </li>
+            </ul>*@
+
+        <ul class='wraplist'>
+            @foreach (var menuGroup in menuGroups)
+            {
+                <li class='menusection'>@menuGroup.MenuType</li>
+                foreach (var menu in menuGroup.Menus)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", @menu.ControllerName)">
+                            <i class="fa fa-@menu.Icon"></i>
+                            <span class="title">@menu.Title</span>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,243 @@
+* {
+    font-family: Poppins;
+}
+
+body {
+    margin: 0;
+    line-height: normal;
+    background-color: #eeeeee;
+}
+
+a,
+a:hover {
+    text-decoration: none !important;
+    color: #791215;
+}
+
+.dashboard {
+    background-color: #eee;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    color: #fff;
+    min-height: calc(100vh - 80px);
+    padding-bottom: 80px;
+}
+
+/*++++++++++++++++++++++++ Start Hero Section ++++++++++++++++++++++++++++++*/
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 315px;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: -4%;
+    width: 31%;
+    height: 100%;
+    background-image: url("images/rectangle-1.svg");
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.child1 img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 80%;
+    height: 100%;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+
+    .carousel-item img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+.logo-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7.41px;
+}
+
+    .logo-image img {
+        width: 75px;
+        letter-spacing: 0.5px;
+    }
+
+.title {
+    width: 50%;
+    text-align: center;
+}
+
+/*++++++++++++++++++++++++ End Hero Section ++++++++++++++++++++++++++++++*/
+
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 30px;
+    margin-top: 30px;
+}
+
+.menu-item {
+    padding: 0 25px;
+    text-align: center;
+}
+
+.menu-content {
+    border-radius: 15px;
+}
+
+.menu-link,
+.menu-link:hover {
+    text-decoration: none !important;
+    color: #000000;
+    cursor: pointer;
+}
+
+.menu-title {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    margin: 10px 0 0 0;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.footer-logo-icon {
+    width: 27px;
+    height: 27px;
+    object-fit: cover;
+}
+
+@media (max-width: 575px) {
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .logo {
+        background-color: #791215;
+        background-image: none;
+    }
+
+    .logo,
+    .slider {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 200px) and (max-width: 991px) {
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .logo {
+        background-color: #791215;
+        background-image: none;
+    }
+
+    .logo,
+    .slider {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .title {
+        width: 100%;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 576px) {
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .logo {
+        left: -120px;
+        width: 580px;
+    }
+
+    .slider {
+        left: 335px;
+        width: calc(100% - 335px);
+    }
+
+    .carousel-control-prev {
+        left: 75px;
+    }
+
+    .menu-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1186px) {
+    .logo {
+        left: -100px;
+        max-width: 580px;
+    }
+
+    .slider {
+        left: 375px;
+        width: calc(100% - 375px);
+    }
+
+    .carousel-control-prev {
+        left: 30px;
+    }
+}
+
+@media (min-width: 1190px) {
+    .menu-container {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}

@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "";
+    ViewBag.Title = "Contact Us";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-info {
+        text-align: center;
+        margin-right: 20px;
+    }
+
+    .qr-code img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .contact-container h2 {
+        font-size: 32px;
+        color: #333;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .contact-info p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="contact-container">
+    <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:support@bgb.gov.bd">support@bgb.gov.bd</a></p>
+        <p>IT Support Cell: +8801769600535</p>
+    </div>
+    <div class="qr-code">
+        <img src="~/Content/images/qr.png" alt="QR Code" />
+    </div>
+</div>

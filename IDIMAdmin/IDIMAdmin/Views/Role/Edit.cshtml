@@ -1,0 +1,94 @@
+﻿@model IDIMAdmin.Models.User.RoleVm
+@{
+    ViewBag.Title = "Role";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Role</h1>
+        </div>
+
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List","Role")">
+                        <i class="fa fa-list" aria-hidden="true"></i>  Role
+                    </a>
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Edit</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("List","Role")" class="btn btn-default">
+                    <i class="fa fa-list"></i> List
+                </a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    @using (Html.BeginForm("Edit", "Role", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.RoleId)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ApplicationId, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(m => m.ApplicationId, Model.ApplicationDropdown, "Select Applicaiton", new { @class = "select2" })
+                                        @Html.ValidationMessageFor(model => model.ApplicationId)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-4 form-label" })
+                                    <div class="col-md-8">
+                                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-control iCheck" })
+                                        @Html.ValidationMessageFor(model => model.IsActive)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pull-right">
+                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="reset" class="btn" value="Clear" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

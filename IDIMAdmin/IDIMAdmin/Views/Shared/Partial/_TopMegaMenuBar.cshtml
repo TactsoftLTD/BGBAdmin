@@ -1,0 +1,59 @@
+﻿@using IDIMAdmin.Extentions.Session
+@using IDIMAdmin.Models.User
+@{
+    var user = UserExtention.Get<UserInformation>("UserInformation");
+    var applications = user?.Applications;
+}
+@if (applications!=null && applications.Any())
+{
+    <li class="profile">
+        <a href="#" data-toggle="dropdown" class="toggle">
+            My Application
+            <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu profile animated fadeIn">
+            @foreach (var application in applications)
+            {
+                <li>
+                    <a href="@application.Url">
+                        <i class="fa fa-@application.Icon" style="color:#@application.Color"></i>
+                        @application.ApplicationShortName
+                    </a>
+                </li>
+            }
+
+            @*<li>
+                    <a href="@Url.Action("List", "Application")">
+                        <i class="fa fa-wrench"></i>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Device")">
+                        <i class="fa fa-wrench"></i>
+                        Device
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Menu")">
+                        <i class="fa fa-wrench"></i>
+                        Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "User")">
+                        <i class="fa fa-wrench"></i>
+                        User
+                    </a>
+                </li>
+            *@
+
+            @*<li>
+                <a href="@Url.Action("Generate", "Menu")">
+                    <i class="fa fa-wrench"></i>
+                    Menu Generate
+                </a>
+            </li>*@
+        </ul>
+    </li>
+}

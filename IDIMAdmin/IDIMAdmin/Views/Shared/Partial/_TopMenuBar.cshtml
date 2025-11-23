@@ -1,0 +1,49 @@
+﻿@using IDIMAdmin.Extentions
+@using IDIMAdmin.Extentions.Session
+@using IDIMAdmin.Models.User
+@{
+    UserInformation userInformation = UserExtention.Get<UserInformation>("UserInformation");
+
+    var name = (userInformation?.Name ?? userInformation?.Username) ?? "Anonymous";
+    var avatar = userInformation?.Avatar ?? DefaultData.DefaultAvatar;
+}
+<div class='page-topbar'>
+    <div class='logo-area'>
+    </div>
+    <div class='quick-area'>
+        <div class='pull-left'>
+            <ul class="info-menu left-links list-inline list-unstyled">
+                <li class="sidebar-toggle-wrap">
+                    <a href="javascript:;" data-toggle="sidebar" class="sidebar_toggle">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+                @Html.Partial("Partial/_TopMegaMenuBar")
+            </ul>
+        </div>
+        <div class='pull-right'>
+            <ul class="info-menu right-links list-inline list-unstyled">
+                <li class="profile">
+                    <a href="#" data-toggle="dropdown" class="toggle">
+                        <img src="@Url.Content(avatar)" alt="avatar" class="img-circle img-inline">
+                        <span>@name <i class="fa fa-angle-down"></i></span>
+                    </a>
+                    <ul class="dropdown-menu profile animated fadeIn">
+                        <li>
+                            <a href="@Url.Action("Index","Profile")">
+                                <i class="fa fa-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li class="last">
+                            <a href="@Url.Action("Logout","Login")">
+                                <i class="fa fa-lock"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

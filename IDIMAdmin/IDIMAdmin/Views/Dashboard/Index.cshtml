@@ -1,0 +1,182 @@
+﻿@model IDIMAdmin.Models.Dashboard.DashboardVm
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="col-lg-12">
+    <section class="box nobox">
+        <div class="content-body">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="r4_counter db_box">
+                        <i class='pull-left fa fa-building icon-md icon-rounded icon-primary'></i>
+                        <div class="stats">
+                            <h4><strong>@Model.Application</strong></h4>
+                            <a href="@Url.Action("Index","Application")"><span>Application Management</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="r4_counter db_box">
+                        <i class='pull-left fa fa-list icon-md icon-rounded icon-accent'></i>
+                        <div class="stats">
+                            <h4><strong>@Model.Menu</strong></h4>
+                            <a href="@Url.Action("Index","Menu")"><span>Menu Management</span></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="r4_counter db_box">
+                        <i class='pull-left fa fa-users icon-md icon-rounded icon-warning'></i>
+                        <div class="stats">
+                            <h4><strong>@Model.User</strong></h4>
+                            <a href="@Url.Action("Index","User")"><span>User Management</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-building icon-md icon-rounded icon-bgb'></i>
+                            <div class="stats">
+                                <h4><strong>@Model.Regiment</strong></h4>
+                                <span>Regiments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-flag-checkered icon-md icon-rounded icon-bgb'></i>
+                            <div class="stats">
+                                <h4><strong>@Model.Region</strong></h4>
+                                <span>Region</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-flag icon-md icon-rounded icon-bgb'></i>
+                            <div class="stats">
+                                <h4><strong>@Model.Sector</strong></h4>
+                                <span>Sector</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-bullhorn icon-md icon-rounded icon-bgb'></i>
+                            <div class="stats">
+                                <h4><strong>@Model.Battalion</strong></h4>
+                                <span>Battalion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="row">
+                <div class="col-md-12 col-sm-7 col-xs-12">
+                    <div class="r1_maingraph db_box">
+                        <span class='pull-left'>
+                            <i class='icon-bgb fa fa-square icon-xs'></i>&nbsp;<small>Application PAGES (4X)</small>
+                        </span>
+                        <div id="menu_graph" style="height:272px;width:100%;"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-7 col-xs-12">
+                    <div class="r1_maingraph db_box">
+                        <span class='pull-left'>
+                            <i class='icon-bgb fa fa-square icon-xs'></i>&nbsp;<small>Application User</small>
+                        </span>
+                        <div id="user_graph" style="height:272px;width:100%;"></div>
+                    </div>
+                </div>
+
+                @*<div class="col-md-12 col-sm-7 col-xs-12">
+                        <div class="r1_maingraph db_box">
+                            <span class='pull-left'>
+                                <i class='icon-purple fa fa-square icon-xs'></i>&nbsp;<small>PAGE VIEWS</small>&nbsp; &nbsp;<i class='fa fa-square icon-xs icon-primary'></i>&nbsp;<small>UNIQUE VISITORS</small>
+                            </span>
+                            <div id="db_morris_line_graph" style="height:272px;width:100%;"></div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Application</h2>
+            <div class="actions panel_actions pull-right">
+                <a class="box_toggle fa fa-chevron-down"></a>
+                <a class="fa fa-info" href="@Url.Action("Index","Application")"></a>
+                <a class="box_close fa fa-times"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Application</th>
+                        <th style="width: 10%">Menu</th>
+                        <th style="width: 10%">User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var application in Model.Applications)
+                    {
+                    <tr>
+                        <td>@application.ApplicationCode</td>
+                        <td>@application.ApplicationName</td>
+                        <td><span class="label label-bgb">@application.Menu</span></td>
+                        <td><span class="badge badge-bgb">@application.User</span></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+@*<div class="col-lg-6">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Region</h2>
+            <div class="actions panel_actions pull-right">
+                <a class="box_toggle fa fa-chevron-down"></a>
+                <a class="fa fa-info" href="@Url.Action("Index","Unit")"></a>
+                <a class="box_close fa fa-times"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 60%">Region</th>
+                        <th style="width: 15%">Sector</th>
+                        <th style="width: 15%">Battalion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var region in Model.Regions)
+                    {
+                        <tr>
+                            <td>@region.RegionName</td>
+                            <td><span class="label label-bgb">@region.Sector</span></td>
+                            <td><span class="badge badge-bgb">@region.Battalion</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>*@
+
+@section styles{@Styles.Render("~/Content/dashboard")}
+@section scripts{@Scripts.Render("~/bundles/dashboard")}

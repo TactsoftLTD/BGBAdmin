@@ -1,0 +1,76 @@
+﻿@using IDIMAdmin.Extentions
+@model IDIMAdmin.Models.User.LoginVm
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+    var avatar = string.IsNullOrEmpty(Model.Avatar) ? DefaultData.DefaultAvatar : Model.Avatar;
+}
+
+<div class="login-wrapper row">
+    <div class="col-md-5 bgb-left">
+        <div class="row">
+            <div class="login-left text-center">
+                <h2>Administration</h2>
+                <div class="bgb-logo">
+                    <img src="@Url.Content("~/Content/images/bgb-logo.png")" alt="BGB">
+                </div>
+                <h1>BGB</h1>
+                <h3>Border Guard Bangladesh</h3>
+                <p>
+                    Pilkhana, Dhaka-1205, Bangladesh
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="login-right">
+            @*<div class="form-top">
+                   <span>
+                       <img src="@Url.Content("~/Content/images/idim.png")" alt="IDIM">
+                   </span>
+                </div>*@
+
+            <h1 class="lockscreen-icon"><i class="fa fa-lock"></i></h1>
+            <h1 class="lockscreen-info">
+                <img alt="@Model.Name" src="@Url.Content(avatar)"> Hello @Model.Name,
+            </h1>
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("Lock", "Login", FormMethod.Post, new { @class = "lockscreen-search" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-danger">@Html.ValidationSummary()</div>
+                        @Html.HiddenFor(m => m.Username)
+                        @Html.HiddenFor(m => m.Name)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group transparent">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-unlock icon-primary"></i>
+                                        </span>
+                                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password", autofocus = "autofocus" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 btn-submit">
+                                <div class="form-group">
+                                    <input value="Login" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <h1 class="lockscreen-tagline">Login to another account, go to <a href="@Url.Action("Login","Login")">Login</a></h1>
+
+            <div class="login-right-bottom text-right">
+                @Html.Partial("Partial/_Footer")
+            </div>
+        </div>
+    </div>
+</div>

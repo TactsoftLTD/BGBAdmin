@@ -1,0 +1,88 @@
+﻿@model IDIMAdmin.Models.User.DeviceVm
+@{
+
+    ViewBag.Title = "Device";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+
+        <div class="pull-left">
+            <h1 class="title">Device</h1>
+        </div>
+
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List","Device")">
+                        <i class="fa fa-list" aria-hidden="true"></i>  Device
+                    </a>
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Edit</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("Create","Device")" class="btn btn-success">
+                    <i class="fa fa-plus"></i> Create New
+                </a>
+                <a href="@Url.Action("Detail","Device", new { id=Model.DeviceId})" class="btn btn-info">
+                    <i class="fa fa-info"></i> Detail
+                </a>
+                <a href="@Url.Action("Delete","Device", new { id=Model.DeviceId})" class="btn btn-danger">
+                    <i class="fa fa-remove"></i> Delete
+                </a>
+                <a href="@Url.Action("List","Device")" class="btn btn-default">
+                    <i class="fa fa-list"></i> List
+                </a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    @using (Html.BeginForm("Edit", "Device", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m=>m.DeviceId)
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.DeviceName, new { @class = "col-md-2 form-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.DeviceName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DeviceName)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class=" pull-right">
+                                    <input type="submit" class="btn btn-success" value="Save"/>
+                                    <input type="reset" class="btn pull-left" value="Clear"/>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

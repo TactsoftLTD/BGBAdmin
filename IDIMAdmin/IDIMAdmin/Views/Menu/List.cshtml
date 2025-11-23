@@ -1,0 +1,161 @@
+﻿@model IDIMAdmin.Models.User.MenuSearchVm
+@{
+    ViewBag.Title = "Menu";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class= title>Menu</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li class="active">
+                    <strong>Menu</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">List</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("Create","Menu")" class="btn btn-success">
+                    <i class="fa fa-plus"></i> Create New
+                </a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="MenuSearch" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ApplicationId, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(m => m.ApplicationId, Model.ApplicationDropdown, "Select Applicaiton", new { @class = "select2" })
+                                        @Html.ValidationMessageFor(model => model.ApplicationId)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ControllerName, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.ControllerName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ControllerName)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 form-label required" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Title)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            @*<div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Active, new { @class = "col-md-2 form-label" })
+                                        <div class="col-md-10">
+                                            @Html.RadioButtonFor(m => m.Active, Active.All, new { @class = "iCheck" }) @Active.All.ToString()
+                                            @Html.RadioButtonFor(m => m.Active, Active.Active, new { @class = "iCheck" }) @Active.Active.ToString()
+                                            @Html.RadioButtonFor(m => m.Active, Active.NotActive, new { @class = "iCheck" }) Not Active
+                                            @Html.ValidationMessageFor(model => model.Active)
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <input type="button" id="search" class="btn btn-success pull-right" value="Search" />
+                                <input type="button" id="clear" class="btn btn-default pull-left" value="Clear" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="DataGrid" class="table table-striped table-bordered"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts {
+    <script>
+        var grid;
+        $(function () {
+            grid = {
+                selector: "#DataGrid",
+                formselector: "#MenuSearch",
+                dt: null,
+                init: function () {
+                    dt = $(grid.selector).DataTable({
+                            dom: 'flrtip',
+                            serverSide: true,
+                            processing: true,
+                            ajax: {
+                                url: "@Url.Action("_List", "Menu")",
+                                data: grid.params
+                            },
+                            columns: [
+                                { title: "Status", data: "IsPublished",orderable: false, searchable: false, width: "25px", render: boolToIcon },
+                                { title: "Menu", data: "ControllerName", searchable: true },
+                                { title: "Title", data: "Title", searchable: true },
+                                { title: "Application", data: "ApplicationName", searchable: false, orderable:false},
+                                { title: "Icon", data: "Icon", searchable: true, orderable: false, width: "25px", render: toIcon }
+                            ],
+                            columnDefs: [ {
+                                targets: [5],
+                                title: "Actions",
+                                data: "MenuId",
+                                orderable: false,
+                                render: function ( data, type, row, meta ) {
+                                    return '<a href="' + baseUrl + '/Menu/Edit/' + data + '"><span class="label label-primary"><i class="fa fa-edit"></i> Edit</span></a > <a href="' + baseUrl +'/Menu/Delete/' + data + '"><span class="label label-danger"><i class="fa fa-remove"></i> Remove</span></a>';
+                                },
+                                width:"135px"
+                            } ]
+                        });
+                },
+                params: function(d) {
+                    $.extend(d, arrayToObject($(grid.formselector).serializeArray()));
+                },
+                clear: function() {
+                    $(".select2").val("").trigger("change");
+                    $(grid.formselector)[0].reset();
+                    dt.ajax.reload();
+                },
+                refresh: function () {
+                    dt.ajax.reload();
+                }
+            }
+
+            grid.init();
+            $('#search').on("click", grid.refresh);
+            $('#clear').on("click", grid.clear);
+        });
+    </script>
+}
+

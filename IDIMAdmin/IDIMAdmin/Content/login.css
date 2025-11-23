@@ -1,0 +1,422 @@
+﻿@import url("../content/fonts/font-roboto.css");
+@import url("../content/fonts/font-open-sans.css");
+
+h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+
+.login-left h1, h2 {
+    color: #fff;
+    font-weight: bold;
+}
+
+.login-left h1 {
+    font-size: 50px;
+}
+
+.login-left h2 {
+    font-size: 40px;
+    margin: 5% 0;
+}
+
+.login-left h3 {
+    font-size: 30px;
+}
+
+.login-left h4 {
+    font-size: 20px;
+}
+
+.login-left p, .login-left h3 {
+    margin: 3%;
+}
+
+.login-left {
+    background: url("images/bgb-login-back.jpg") no-repeat scroll 0 0 / auto 100%;
+    position: relative;
+    color: #fff;
+    padding: 15% 5%;
+    z-index: 1;
+    height: 100vh;
+}
+
+    .login-left:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        opacity: .9;
+        content: "";
+        z-index: -1;
+    }
+
+.bgb-logo {
+    margin: 15% 0;
+}
+
+.login-right {
+    padding: 6% 12%;
+}
+
+.sign-right-top a {
+    display: inline-block;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 4px;
+}
+
+.form-top img {
+    max-width: 100%;
+}
+
+.form-heading {
+    margin-bottom: 15px;
+    margin-top: 30px;
+    font-weight: 700;
+    color: #888;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+    .form-heading h1 {
+        margin-top: 30px;
+    }
+
+    .form-heading h3 {
+        margin-bottom: 50px;
+    }
+
+input[type="text"],
+input[type="password"] {
+    padding: 15px;
+    height: 100%;
+    background-color: #EEEEEE;
+}
+
+.input-pin input {
+    width: 10%;
+    margin-right: 10px;
+    padding: 16px 15px;
+    border-color: #A82D32;
+    height: 100%;
+    float: left;
+    font-size: 22px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 1px solid #e1e1e1;
+    background: #e1e1e1;
+    outline: 0;
+    box-shadow: none;
+}
+
+label {
+    padding: 10px 0;
+}
+
+.resend-pin {
+    margin-top: 70px;
+    font-size: 16px;
+    line-height: 22px;
+    text-decoration: none;
+}
+
+    .resend-pin a {
+        font-weight: 700;
+    }
+
+.btn-submit {
+    margin: 15px 0 0;
+}
+
+    .btn-submit input[type="submit"] {
+        display: block;
+        background: none;
+        border: 0;
+        color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        min-width: 150px;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+.form-bottom a {
+    color: #3d3d3d;
+    transition: all .3s;
+    font-size: 16px;
+}
+
+.login-right-bottom {
+    margin-top: 130px;
+}
+
+.login-right-bottom-pin {
+    margin-top: 300px;
+}
+
+.login-right-bottom a {
+    color: #838383;
+}
+
+.login-right-bottom a img {
+    margin-left: 10px;
+    width: 23px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=checkbox], input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=radio], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea, .form-control {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    -o-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #e1e1e1;
+}
+
+.validation-summary-errors ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: #F44336;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.lockscreen-icon i {
+    color: #888;
+    font-size: 140px;
+    text-align: center;
+    margin: 10px auto 0 0;
+    display: block;
+}
+
+.lockscreen-info img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.lockscreen-info {
+    text-align: left;
+    display: block;
+    width: 100%;
+    font-size: 21px;
+    line-height: 32px;
+    color: #999999;
+    font-weight: 400;
+    margin: 15px 0;
+}
+
+.lockscreen-search {
+    margin: 15px 0;
+}
+
+    .lockscreen-search input[type='password'] {
+        margin: 0 auto;
+        padding: 15px 15px;
+        font-size: 17px;
+        height: 45px !important;
+        background-color: #f8f8f8;
+    }
+
+    .lockscreen-search .input-group.transparent .input-group-addon {
+        background-color: #f8f8f8;
+        padding: 6px 12px 6px 20px;
+        border-radius: 0;
+        border: 1px solid #e1e1e1;
+        border-right: 0;
+    }
+
+.lockscreen-btn {
+    margin: 30px 0 0 0;
+}
+
+.lockscreen-search i {
+    font-size: 21px;
+}
+
+.lockscreen-tagline {
+    text-align: left;
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    line-height: 32px;
+    color: #aaaaaa;
+    font-weight: 400;
+    margin: 15px 0;
+}
+
+@media(max-width: 1400px) {
+    .bgb-logo {
+        margin: 30px;
+    }
+
+        .bgb-logo img {
+            max-width: 40%;
+        }
+
+    .login-left h2 {
+        margin-bottom: 15px;
+    }
+
+    .login-right-bottom {
+        margin-top: 70px;
+    }
+
+    .login-right-bottom {
+        margin-top: 30px;
+    }
+
+        .login-right-bottom a {
+            font-size: 18px;
+        }
+
+        .login-right-bottom p img {
+            max-width: 25px;
+        }
+
+    .btn-submit {
+        margin-top: 20px;
+    }
+
+    .form-heading-pin h1 {
+        font-size: 50px;
+    }
+
+    .input-pin input {
+        width: 15%;
+        text-align: center;
+    }
+
+    .login-right-bottom-pin {
+        margin-top: 160px;
+    }
+
+    .resend-pin {
+        margin-top: 35px;
+    }
+}
+
+@media(max-width: 1024px) {
+    .login-left {
+        padding: 30px;
+    }
+
+    .form-heading {
+        font-size: 30px;
+    }
+
+    .login-left h1 {
+        font-size: 60px;
+    }
+}
+
+@media(max-width: 768px) {
+    .login-left {
+        height: auto;
+    }
+
+        .login-left h2 {
+            font-size: 25px;
+        }
+
+        .login-left h1 {
+            font-size: 35px;
+        }
+
+        .login-left h3, .login-left p, .login-left h1, .login-left  h2{
+            display: none;
+        }
+
+    .bgb-logo img {
+        margin-top: -50px;
+        max-width: 20%;
+    }
+
+    .bgb-left {
+        width: 100%;
+    }
+
+    .login-right-bottom-pin {
+        margin-top: 30px;
+    }
+}
+
+@media(max-width: 767px) {
+    .input-pin input {
+        width: 20%;
+        margin-bottom: 30px;
+    }
+
+    .resend-pin {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .login-right-bottom-pin.text-right {
+        text-align: center;
+    }
+
+    .form-heading-pin h3 {
+        font-size: 20px;
+    }
+
+    .login-right-bottom-pin {
+        margin-bottom: 20px;
+    }
+
+    .bgb-logo img {
+        width: 100px;
+    }
+
+    .bgb-logo {
+        margin: 5px;
+    }
+
+    .login-right {
+        padding: 30px;
+    }
+
+    .login-right-bottom {
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+
+        .login-right-bottom.text-right {
+            text-align: center;
+        }
+}
+
+@media(max-width: 640px) {
+    .bgb-logo img {
+        max-width: 100px;
+        margin-top: 0px;
+    }
+}
+
+.login-left::after, .btn-submit input[type="submit"] {
+    background-color: #A82D32; /*168, 45, 50*/
+}
+
+input[type="text"], input[type="password"], .input-pin input, .form-bottom a:hover, .resend-pin a, label,
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #A82D32;
+}

@@ -1,0 +1,179 @@
+﻿@model IDIMAdmin.Models.Admin.ActivityLogVm
+@{
+    ViewBag.Title = "Activity Log";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Activity Log</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "ActivityLog")">
+                        <i class="fa fa-list"></i>
+                        Activity Log
+                    </a>
+                </li>
+                <li class="active">
+                    <strong>Detail</strong>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Detail</h2>
+        </header>
+
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserId, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.UserId)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.UserName)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ApplicationId, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.ApplicationId)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ApplicationName, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.ApplicationName)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Controller, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.Controller)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Action, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.Action)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Url, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.Url)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.RequestType, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.RequestType)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Agent, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.Agent)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Browser, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.Browser)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ActivityTime, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.ActivityTime)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ActivityData, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    <div style="display:flex;align-items:flex-start;">
+                                        <div style="margin-right:5px;">:</div>
+                                        <pre>@Html.DisplayFor(m => m.ActivityData)</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ActivityDescription, new { @class = "col-md-2 form-label" })
+                                <div class="controls col-md-10">
+                                    : @Html.DisplayFor(m => m.ActivityDescription)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

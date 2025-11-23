@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="949ff6eda81c46c0b843df25ae735dbc" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="IDIMDBModel.GeneralInformation" Width="1.5" PointX="9.25" PointY="13.5" />
+        <EntityTypeShape EntityType="IDIMDBModel.SetupUnit" Width="1.5" PointX="7" PointY="18.125" />
+        <AssociationConnector Association="IDIMDBModel.FK_GeneralInformation_SetupUnit" />
+        <EntityTypeShape EntityType="IDIMDBModel.Application1" Width="1.5" PointX="10.375" PointY="2.625" />
+        <AssociationConnector Association="IDIMDBModel.FK_RolePrivileges2" />
+        <AssociationConnector Association="IDIMDBModel.FK_UserPrivileges2" />
+        <EntityTypeShape EntityType="IDIMDBModel.Application" Width="1.5" PointX="9.25" PointY="8.25" />
+        <EntityTypeShape EntityType="IDIMDBModel.Menu" Width="1.5" PointX="11.5" PointY="3.25" />
+        <EntityTypeShape EntityType="IDIMDBModel.Role" Width="1.5" PointX="11.5" PointY="8.75" />
+        <EntityTypeShape EntityType="IDIMDBModel.User" Width="1.5" PointX="11.5" PointY="18.125" />
+        <AssociationConnector Association="IDIMDBModel.FK_Menu_Application" />
+        <AssociationConnector Association="IDIMDBModel.FK_Role_Application" />
+        <AssociationConnector Association="IDIMDBModel.FK_User_GeneralInformation" />
+        <AssociationConnector Association="IDIMDBModel.Users_FK" />
+        <EntityTypeShape EntityType="IDIMDBModel.RolePrivilege" Width="1.5" PointX="13.75" PointY="6.25" />
+        <AssociationConnector Association="IDIMDBModel.RolePrivileges_FK" />
+        <AssociationConnector Association="IDIMDBModel.FK_RolePrivileges1" />
+        <EntityTypeShape EntityType="IDIMDBModel.UserPrivilege" Width="1.5" PointX="13.75" PointY="14.25" />
+        <AssociationConnector Association="IDIMDBModel.FK_UserPrivileges1" />
+        <AssociationConnector Association="IDIMDBModel.UserPrivileges_FK" />
+        <EntityTypeShape EntityType="IDIMDBModel.ActivityLog" Width="1.5" PointX="16.75" PointY="13.375" />
+        <AssociationConnector Association="IDIMDBModel.FK_ActivityLogs_Applications" />
+        <AssociationConnector Association="IDIMDBModel.FK_ActivityLogs_Users" />
+        <EntityTypeShape EntityType="IDIMDBModel.SlideImage" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IDIMDBModel.UserType" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

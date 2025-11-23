@@ -1,0 +1,179 @@
+﻿@using IDIMAdmin.Extentions.File
+@model IDIMAdmin.Models.User.UserDetailVm
+@{
+    ViewBag.Title = "User";
+}
+
+<style>
+    .uprofile-left {
+        background: #fff;
+        padding: 30px 0;
+    }
+</style>
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">User</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List","User")"><i class="fa fa-list"></i>user</a>
+                </li>
+                <li class="active">
+                    <strong>Detail</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box nobox ">
+        <div class="content-body">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="uprofile-left">
+                        <div class="uprofile-image">
+                            <img src="@Url.Content(Model.User.Picture.ToThumbnail())" class="img-responsive">
+                        </div>
+                        <div class="uprofile-name">
+                            <h3>
+                                <a href="#">@Model.User.Username</a>
+                                <span class="uprofile-status online"></span>
+                            </h3>
+                            <p class="uprofile-title">@Model.User.RegimentNo</p>
+                        </div>
+                        <div class="uprofile-info">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fa fa-phone">@Model.User.Phone</i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-code">@Model.User.PersonnelCode</i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="uprofile-buttons">
+                            <a href="@Url.Action("Edit","User", new {id= Model.User.UserId})" class="btn btn-md btn-primary">Edit</a>
+                            <a href="@Url.Action("ChangePassword","User", new {id= Model.User.UserId})" class="btn btn-md btn-primary">Change Password</a>
+                            <a href="@Url.Action("Assign","User", new {id= Model.User.UserId})" class="btn btn-md btn-primary">Assign Roles</a>
+                            @*<a href="@Url.Action("Assign","UserDevice", new {id= Model.User.UserId})" class="btn btn-md btn-primary">Device</a>
+                            <a href="@Url.Action("Assign","User", new{id=Model.User.UserId})" class="btn btn-md btn-primary">Menu</a>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <div class="uprofile-content">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Applications</h2>
+                        </header>
+                        @if (Model.Applications.Any())
+                        {
+                            foreach (var application in Model.Applications)
+                            {
+                                <a href="@Url.Action("Detail", "Application", new {id = application.ApplicationId})">
+                                    <span class="badge badge-md badge-danger">@application.ApplicationName</span>
+                                </a>
+                            }
+                            <p>@Model.Applications.Count Applications assigned.</p>
+                        }
+                        else
+                        {
+                            <p>No Applications assigned.</p>
+                        }
+
+                        @*<header class="panel_header">
+                            <h2 class="title pull-left">Devices</h2>
+                        </header>
+                        @if (Model.Devices.Any())
+                        {
+                            foreach (var device in Model.Devices)
+                            {
+                                <a href="@Url.Action("Detail", "Device", new {id = device.DeviceId})">
+                                    <span class="badge badge-md badge-info">@device.DeviceName</span>
+                                </a>
+                            }
+                            <p>@Model.Devices.Count Devices assigned.</p>
+                        }
+                        else
+                        {
+                            <p>No Devices assigned.</p>
+                        }*@
+
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Menus</h2>
+                        </header>
+                        <div class="panel-group primary collapsed" id="accordion-4" role="tablist" aria-multiselectable="true">
+                            @if (Model.Menus.Any())
+                            {
+                                for (var i = 0; i < Model.Menus.Count(); i++)
+                                {
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne1">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@i" aria-expanded="true" aria-controls="collapseOne">
+                                                    <i class='fa fa-check'></i> @Model.Menus[i].ApplicationName
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse-@i" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-bordered">
+                                                    <tbody>
+                                                        @for (var j = 0; j < Model.Menus[i].Menus.Count(); j++)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(m => Model.Menus[i].Menus[j].Title)
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @if(i < Model.Menus.Count() - 1)
+                                         {
+                                            <div style="margin-top: 10px;"></div>
+                                         }
+                                           
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p>No Menu assigned.</p>
+                            }
+                        </div>
+
+
+                        @*@for (var i = 0; i < Model.Menus.Count(); i++)
+                            {
+                                <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+                                   <tbody>
+                                    @for (var j = 0; j < Model.Menus[i].Menus.Count(); j++)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(m => Model.Menus[i].Menus[j].Menu.Title)
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            }*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

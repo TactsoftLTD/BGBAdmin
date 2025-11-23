@@ -1,0 +1,4 @@
+UserType Table addedwith column UserTypeId and UserTypeName;
+
+
+Added a Column on User table ,Column Name IsAll

@@ -1,0 +1,244 @@
+﻿@model IDIMAdmin.Models.User.RegisterVm
+@{
+    ViewBag.Title = "User";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">User</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List","User")">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        User
+                    </a>
+                </li>
+                <li class="active"><strong>Create</strong></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box">
+        <header class="panel_header">
+            <h2 class="title pull-left">Create</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("List","User")" class="btn"><i class="fa fa-list"></i> List</a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Username, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Username)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ArmyId, new { @class = "col-md-4 form-label" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.ArmyId, new { @class = "armyId" })
+                                        @Html.ValidationMessageFor(model => model.ArmyId)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Password and RePassword -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password must be at least 8 characters with 1 uppercase, 1 lowercase, and 1 number." })
+                                        @Html.ValidationMessageFor(model => model.Password)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RePassword, new { @class = "col-md-4 form-label" })
+                                    <div class="col-md-8">
+                                        @Html.PasswordFor(m => m.RePassword, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.RePassword)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personnel Code -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PersonnelCode, new { @class = "col-md-2 form-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.PersonnelCode, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PersonnelCode)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <!-- Phone and Email -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Phone, new { @class = "col-md-4 form-label" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Phone)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 form-label" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- User Type -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.UserType, new { @class = "col-md-4 form-label" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownListFor(m => m.UserType, Model.UserTypeList, "-- Select User Type --", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.UserType)
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Selected Units -->
+                                <div class="col-md-6" id="SelectedUniteIdsDiv">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.SelectedUniteIds, new { @class = "col-md-4 form-label" })
+                                        <div class="col-md-8">
+                                            @Html.ListBoxFor(m => m.SelectedUniteIds, Model.UnitList, new { @class = "js-multiple ", id = "SelectedUniteIds", multiple = "multiple" })
+                                            @Html.ValidationMessageFor(model => model.SelectedUniteIds)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <!-- IsActive and IsAll -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-4 form-label" })
+                                    <div class="col-md-8">
+                                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-control iCheck" })
+                                        @Html.ValidationMessageFor(model => model.IsActive)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" id="IsAllDiv">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.IsAll, new { @class = "col-md-4 form-label" })
+                                    <div class="col-md-8">
+                                        @Html.CheckBoxFor(m => m.IsAll, new { @class = "form-control iCheck", id = "IsAll" })
+                                        @Html.ValidationMessageFor(model => model.IsAll)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pull-right">
+                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="reset" class="btn" value="Clear" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-+N4dZ2s6yPzFT9eQd2pQ0R/3E1tjG6kC4Xc9G9uP6lw=" crossorigin="anonymous"></script>
+
+    <!-- Select2 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize Select2
+            $('#SelectedUniteIds').select2({
+                placeholder: "-- Select Unit List --",
+                allowClear: true,
+                width: '100%'
+            });
+
+            function toggleSelectedUniteDiv() {
+                if ($('#IsAll').is(':checked')) {
+                    $('#SelectedUniteIdsDiv').hide(); // hide the entire div
+                    $('#SelectedUniteIds').val(null).trigger('change'); // clear dropdown
+                } else {
+                    $('#SelectedUniteIdsDiv').show(); // show the div
+                }
+            }
+
+
+            function toggleIsAllDiv() {
+                var selectedCount = $('#SelectedUniteIds').val() ? $('#SelectedUniteIds').val().length : 0;
+                if (selectedCount > 0) {
+                    $('#IsAllDiv').hide();
+                } else {
+                    $('#IsAllDiv').show();
+                }
+            }
+
+            //function toggleAllOnLoad() {
+            //    toggleSelectedUniteDiv();
+            //    toggleIsAllDiv();
+            //}
+
+            //// Initial load
+            //toggleAllOnLoad();
+
+            // Event handlers
+            $('#IsAll').on('ifChanged', function (event) {
+                toggleSelectedUniteDiv();
+            });
+
+            $('#SelectedUniteIds').on('change', function () {
+                toggleIsAllDiv();
+            });
+        });
+    </script>
+}

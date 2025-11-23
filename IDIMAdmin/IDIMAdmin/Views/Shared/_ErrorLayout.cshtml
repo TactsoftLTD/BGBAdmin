@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html class=" ">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - IDIM Admin </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="Integrated Database Management System for Border Guard of Bangladesh" name="description" />
+    <meta content="Md Kakuya Taslim" name="author" />
+    <meta content="Brain Station 23 Limited" name="company" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="~/Content/images/bgb-logo.png" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="~/Content/images/bgb-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/images/bgb-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/images/bgb-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/images/bgb-logo.png">
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/form")
+    @Styles.Render("~/Content/datatable")
+    @RenderSection("styles", required: false)
+    @Styles.Render("~/Content/admin")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    @Html.Partial("Partial/_TopMenuBar")
+    @RenderBody()
+    <div class="col-lg-12" id="footer">
+        <div class="pull-right">
+            @Html.Partial("Partial/_Footer")
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquerymig")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/admin")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

@@ -1,0 +1,19 @@
+﻿@using IDIMAdmin.Extentions
+@{
+    var message = ViewBag.Message as MessageOTP;
+}
+@if (message != null)
+{
+    <script>
+        var msg = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(message ?? new object()));
+        $(document).ready(function () {
+            var msgType = msg.Type,
+                msgIcon = msg.Icon,
+                msgText = msg.Text,
+                msgTitle = msg.Title;
+            sweetMessage(msgType, msgIcon, msgText, msgTitle);
+        });
+
+    </script>
+}
+

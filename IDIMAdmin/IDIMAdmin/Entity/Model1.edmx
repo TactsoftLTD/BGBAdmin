@@ -1,0 +1,1134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IDIMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PersonnelCode" Type="nchar" MaxLength="50" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="UserRoleId" Type="int" />
+          <Property Name="SessionId" Type="nvarchar" MaxLength="100" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="200" />
+          <Property Name="Action" Type="nvarchar" MaxLength="200" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActivityData" Type="nvarchar(max)" />
+          <Property Name="Agent" Type="nvarchar(max)" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActivityTime" Type="datetime" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeviceMac" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationCode" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicationShortName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IconImagePath" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MenuType" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="550" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolePrivileges">
+          <Key>
+            <PropertyRef Name="RolePrivilegeId" />
+          </Key>
+          <Property Name="RolePrivilegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" />
+        </EntityType>
+        <EntityType Name="SlideImages">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="AlternateText" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserPrivileges">
+          <Key>
+            <PropertyRef Name="UserPrivilegeId" />
+          </Key>
+          <Property Name="UserPrivilegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArmyId" Type="int" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ResourceType" Type="int" Nullable="false" />
+          <Property Name="PersonnelCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remark" Type="text" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" Nullable="false" />
+          <Property Name="OtpCode" Type="varchar" MaxLength="100" />
+          <Property Name="OtpGeneratedDate" Type="datetime" />
+          <Property Name="FailedLoginAttempts" Type="int" Nullable="false" />
+          <Property Name="IsLockOut" Type="bit" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="IsAll" Type="bit" Nullable="false" />
+          <Property Name="UniteList" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneralInformation">
+          <Key>
+            <PropertyRef Name="ArmyId" />
+          </Key>
+          <Property Name="ArmyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RegimentNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="RegimentNoB" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NameB" Type="nvarchar" MaxLength="250" />
+          <Property Name="BjoNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ParentUnitId" Type="int" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="EnrollmentDate" Type="datetime" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherNameB" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherRegimentNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="MotherNameB" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone3" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalId" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsFreedomFighter" Type="bit" Nullable="false" />
+          <Property Name="RankId" Type="int" />
+          <Property Name="TradeId" Type="int" />
+          <Property Name="BloodGroupId" Type="int" />
+          <Property Name="MedicalCategoryId" Type="int" />
+          <Property Name="BatchId" Type="int" />
+          <Property Name="EducationId" Type="int" />
+          <Property Name="PresentRankDate" Type="datetime" />
+          <Property Name="EmploymentTypeIdR" Type="int" />
+          <Property Name="ServiceTermsIdR" Type="int" />
+          <Property Name="CoreId" Type="int" />
+          <Property Name="PoliceVarificationStatusR" Type="int" />
+          <Property Name="PresentDistrictId" Type="int" />
+          <Property Name="MaritalStatusId" Type="int" />
+          <Property Name="MarriageDate" Type="datetime" />
+          <Property Name="PreviousBasicR" Type="int" />
+          <Property Name="CurrentBasic" Type="int" />
+          <Property Name="NextIncrementDate" Type="datetime" />
+          <Property Name="ExpectedRetirementDate" Type="datetime" />
+          <Property Name="PayGradeDate" Type="datetime" />
+          <Property Name="ReligionId" Type="int" />
+          <Property Name="BjoNoB" Type="nvarchar" MaxLength="50" />
+          <Property Name="RdoNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="RdoNoB" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActiveStatus" Type="int" />
+          <Property Name="MissionStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="ClassR" Type="nvarchar" MaxLength="50" />
+          <Property Name="CastR" Type="nvarchar" MaxLength="50" />
+          <Property Name="GpfNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="PostingDate" Type="datetime" />
+          <Property Name="IsInjuredLiberation" Type="bit" Nullable="false" />
+          <Property Name="IsCivil" Type="bit" Nullable="false" />
+          <Property Name="IsCs" Type="bit" Nullable="false" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" Nullable="false" />
+          <Property Name="JobStatus" Type="nvarchar" MaxLength="40" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsTribal" Type="bit" />
+          <Property Name="IsCSTTribal" Type="bit" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="TinNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsHomeNearBorder" Type="bit" />
+        </EntityType>
+        <EntityType Name="SetupUnit">
+          <Key>
+            <PropertyRef Name="UnitId" />
+          </Key>
+          <Property Name="UnitId" Type="int" Nullable="false" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SubOrganizationId" Type="int" />
+          <Property Name="UnitCode" Type="nvarchar" MaxLength="250" />
+          <Property Name="UnitFullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CoreId" Type="int" />
+          <Property Name="PlaceId" Type="int" />
+          <Property Name="UnitNameB" Type="nvarchar" MaxLength="150" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" />
+          <Property Name="Israb" Type="int" />
+          <Property Name="SectorId" Type="int" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="CreatedUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedUser" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdateNo" Type="int" Nullable="false" />
+          <Property Name="UnitFullNameB" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_ActivityLogs_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="ActivityLogs" Type="Self.ActivityLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="ActivityLogs">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityLogs_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ActivityLogs" Type="Self.ActivityLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivityLogs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralInformation_SetupUnit">
+          <End Role="SetupUnit" Type="Self.SetupUnit" Multiplicity="0..1" />
+          <End Role="GeneralInformation" Type="Self.GeneralInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetupUnit">
+              <PropertyRef Name="UnitId" />
+            </Principal>
+            <Dependent Role="GeneralInformation">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Application">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Application">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePrivileges1">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="RolePrivileges" Type="Self.RolePrivileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RolePrivileges">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPrivileges1">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserPrivileges">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolePrivileges_FK">
+          <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
+          <End Role="RolePrivileges" Type="Self.RolePrivileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menus">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="RolePrivileges">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserPrivileges_FK">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPrivileges">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IDIMDBModelStoreContainer">
+          <EntitySet Name="ActivityLogs" EntityType="Self.ActivityLogs" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="RolePrivileges" EntityType="Self.RolePrivileges" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="SlideImages" EntityType="Self.SlideImages" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="admin" store:Type="Tables" />
+          <EntitySet Name="GeneralInformation" EntityType="Self.GeneralInformation" Schema="irms" store:Type="Tables" />
+          <EntitySet Name="SetupUnit" EntityType="Self.SetupUnit" Schema="irms" store:Type="Tables" />
+          <AssociationSet Name="FK_ActivityLogs_Applications" Association="Self.FK_ActivityLogs_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="ActivityLogs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityLogs_Users" Association="Self.FK_ActivityLogs_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ActivityLogs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralInformation_SetupUnit" Association="Self.FK_GeneralInformation_SetupUnit">
+            <End Role="SetupUnit" EntitySet="SetupUnit" />
+            <End Role="GeneralInformation" EntitySet="GeneralInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Application" Association="Self.FK_Menu_Application">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Application" Association="Self.FK_Role_Application">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePrivileges1" Association="Self.FK_RolePrivileges1">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolePrivileges" EntitySet="RolePrivileges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPrivileges1" Association="Self.FK_UserPrivileges1">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+          </AssociationSet>
+          <AssociationSet Name="RolePrivileges_FK" Association="Self.RolePrivileges_FK">
+            <End Role="Menus" EntitySet="Menus" />
+            <End Role="RolePrivileges" EntitySet="RolePrivileges" />
+          </AssociationSet>
+          <AssociationSet Name="UserPrivileges_FK" Association="Self.UserPrivileges_FK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IDIMDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="IDIMDBEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="GeneralInformations" EntityType="IDIMDBModel.GeneralInformation" />
+          <EntitySet Name="SetupUnits" EntityType="IDIMDBModel.SetupUnit" />
+          <AssociationSet Name="FK_GeneralInformation_SetupUnit" Association="IDIMDBModel.FK_GeneralInformation_SetupUnit">
+            <End Role="SetupUnit" EntitySet="SetupUnits" />
+            <End Role="GeneralInformation" EntitySet="GeneralInformations" />
+          </AssociationSet>
+          <EntitySet Name="Applications" EntityType="IDIMDBModel.Application" />
+          <EntitySet Name="Menus" EntityType="IDIMDBModel.Menu" />
+          <EntitySet Name="Roles" EntityType="IDIMDBModel.Role" />
+          <EntitySet Name="Users" EntityType="IDIMDBModel.User" />
+          <AssociationSet Name="FK_Menu_Application" Association="IDIMDBModel.FK_Menu_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Menu" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Application" Association="IDIMDBModel.FK_Role_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_GeneralInformation" Association="IDIMDBModel.FK_User_GeneralInformation">
+            <End Role="GeneralInformation" EntitySet="GeneralInformations" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Users_FK" Association="IDIMDBModel.Users_FK">
+            <End Role="GeneralInformation" EntitySet="GeneralInformations" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="RolePrivileges" EntityType="IDIMDBModel.RolePrivilege" />
+          <AssociationSet Name="RolePrivileges_FK" Association="IDIMDBModel.RolePrivileges_FK">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="RolePrivilege" EntitySet="RolePrivileges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePrivileges1" Association="IDIMDBModel.FK_RolePrivileges1">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RolePrivilege" EntitySet="RolePrivileges" />
+          </AssociationSet>
+          <EntitySet Name="UserPrivileges" EntityType="IDIMDBModel.UserPrivilege" />
+          <AssociationSet Name="FK_UserPrivileges1" Association="IDIMDBModel.FK_UserPrivileges1">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserPrivilege" EntitySet="UserPrivileges" />
+          </AssociationSet>
+          <AssociationSet Name="UserPrivileges_FK" Association="IDIMDBModel.UserPrivileges_FK">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserPrivilege" EntitySet="UserPrivileges" />
+          </AssociationSet>
+          <EntitySet Name="ActivityLogs" EntityType="IDIMDBModel.ActivityLog" />
+          <AssociationSet Name="FK_ActivityLogs_Applications" Association="IDIMDBModel.FK_ActivityLogs_Applications">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="ActivityLog" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityLogs_Users" Association="IDIMDBModel.FK_ActivityLogs_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ActivityLog" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <EntitySet Name="SlideImages" EntityType="IDIMDBModel.SlideImage" />
+          <EntitySet Name="UserTypes" EntityType="IDIMDBModel.UserType" />
+          </EntityContainer>
+        <EntityType Name="GeneralInformation">
+          <Key>
+            <PropertyRef Name="ArmyId" />
+          </Key>
+          <Property Name="ArmyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="RegimentNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RegimentNoB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameB" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BjoNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ParentUnitId" Type="Int32" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="EnrollmentDate" Type="DateTime" Precision="3" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherNameB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherRegimentNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MotherNameB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsFreedomFighter" Type="Boolean" Nullable="false" />
+          <Property Name="RankId" Type="Int32" />
+          <Property Name="TradeId" Type="Int32" />
+          <Property Name="BloodGroupId" Type="Int32" />
+          <Property Name="MedicalCategoryId" Type="Int32" />
+          <Property Name="BatchId" Type="Int32" />
+          <Property Name="EducationId" Type="Int32" />
+          <Property Name="PresentRankDate" Type="DateTime" Precision="3" />
+          <Property Name="EmploymentTypeIdR" Type="Int32" />
+          <Property Name="ServiceTermsIdR" Type="Int32" />
+          <Property Name="CoreId" Type="Int32" />
+          <Property Name="PoliceVarificationStatusR" Type="Int32" />
+          <Property Name="PresentDistrictId" Type="Int32" />
+          <Property Name="MaritalStatusId" Type="Int32" />
+          <Property Name="MarriageDate" Type="DateTime" Precision="3" />
+          <Property Name="PreviousBasicR" Type="Int32" />
+          <Property Name="CurrentBasic" Type="Int32" />
+          <Property Name="NextIncrementDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpectedRetirementDate" Type="DateTime" Precision="3" />
+          <Property Name="PayGradeDate" Type="DateTime" Precision="3" />
+          <Property Name="ReligionId" Type="Int32" />
+          <Property Name="BjoNoB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RdoNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RdoNoB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActiveStatus" Type="Int32" />
+          <Property Name="MissionStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ClassR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CastR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GpfNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PostingDate" Type="DateTime" Precision="3" />
+          <Property Name="IsInjuredLiberation" Type="Boolean" Nullable="false" />
+          <Property Name="IsCivil" Type="Boolean" Nullable="false" />
+          <Property Name="IsCs" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" Nullable="false" />
+          <Property Name="JobStatus" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsTribal" Type="Boolean" />
+          <Property Name="IsCSTTribal" Type="Boolean" />
+          <Property Name="Gender" Type="Int32" />
+          <NavigationProperty Name="SetupUnit" Relationship="IDIMDBModel.FK_GeneralInformation_SetupUnit" FromRole="GeneralInformation" ToRole="SetupUnit" />
+          <NavigationProperty Name="Users" Relationship="IDIMDBModel.FK_User_GeneralInformation" FromRole="GeneralInformation" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="IDIMDBModel.Users_FK" FromRole="GeneralInformation" ToRole="User" />
+          <Property Name="TinNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsHomeNearBorder" Type="Boolean" />
+          </EntityType>
+        <EntityType Name="SetupUnit">
+          <Key>
+            <PropertyRef Name="UnitId" />
+          </Key>
+          <Property Name="UnitId" Type="Int32" Nullable="false" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubOrganizationId" Type="Int32" />
+          <Property Name="UnitCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UnitFullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CoreId" Type="Int32" />
+          <Property Name="PlaceId" Type="Int32" />
+          <Property Name="UnitNameB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Israb" Type="Int32" />
+          <Property Name="SectorId" Type="Int32" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GeneralInformations" Relationship="IDIMDBModel.FK_GeneralInformation_SetupUnit" FromRole="SetupUnit" ToRole="GeneralInformation" />
+          <Property Name="UnitFullNameB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_GeneralInformation_SetupUnit">
+          <End Type="IDIMDBModel.SetupUnit" Role="SetupUnit" Multiplicity="0..1" />
+          <End Type="IDIMDBModel.GeneralInformation" Role="GeneralInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetupUnit">
+              <PropertyRef Name="UnitId" />
+            </Principal>
+            <Dependent Role="GeneralInformation">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationShortName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <NavigationProperty Name="Menus" Relationship="IDIMDBModel.FK_Menu_Application" FromRole="Application" ToRole="Menu" />
+          <NavigationProperty Name="Roles" Relationship="IDIMDBModel.FK_Role_Application" FromRole="Application" ToRole="Role" />
+          <NavigationProperty Name="ActivityLogs" Relationship="IDIMDBModel.FK_ActivityLogs_Applications" FromRole="Application" ToRole="ActivityLog" />
+          <Property Name="IconImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MenuType" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="IDIMDBModel.FK_Menu_Application" FromRole="Menu" ToRole="Application" />
+          <NavigationProperty Name="RolePrivileges" Relationship="IDIMDBModel.RolePrivileges_FK" FromRole="Menu" ToRole="RolePrivilege" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="IDIMDBModel.FK_Role_Application" FromRole="Role" ToRole="Application" />
+          <NavigationProperty Name="RolePrivileges" Relationship="IDIMDBModel.FK_RolePrivileges1" FromRole="Role" ToRole="RolePrivilege" />
+          <NavigationProperty Name="UserPrivileges" Relationship="IDIMDBModel.FK_UserPrivileges1" FromRole="Role" ToRole="UserPrivilege" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArmyId" Type="Int32" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceType" Type="Int32" Nullable="false" />
+          <Property Name="PersonnelCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GeneralInformation" Relationship="IDIMDBModel.FK_User_GeneralInformation" FromRole="User" ToRole="GeneralInformation" />
+          <NavigationProperty Name="GeneralInformation1" Relationship="IDIMDBModel.Users_FK" FromRole="User" ToRole="GeneralInformation" />
+          <NavigationProperty Name="UserPrivileges" Relationship="IDIMDBModel.UserPrivileges_FK" FromRole="User" ToRole="UserPrivilege" />
+          <NavigationProperty Name="ActivityLogs" Relationship="IDIMDBModel.FK_ActivityLogs_Users" FromRole="User" ToRole="ActivityLog" />
+          <Property Name="OtpCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OtpGeneratedDate" Type="DateTime" Precision="3" />
+          <Property Name="FailedLoginAttempts" Type="Int32" Nullable="false" />
+          <Property Name="IsLockOut" Type="Boolean" Nullable="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="IsAll" Type="Boolean" Nullable="false" />
+          <Property Name="UniteList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Menu_Application">
+          <End Type="IDIMDBModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="IDIMDBModel.Menu" Role="Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Application">
+          <End Type="IDIMDBModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="IDIMDBModel.Role" Role="Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_GeneralInformation">
+          <End Type="IDIMDBModel.GeneralInformation" Role="GeneralInformation" Multiplicity="0..1" />
+          <End Type="IDIMDBModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralInformation">
+              <PropertyRef Name="ArmyId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ArmyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Users_FK">
+          <End Type="IDIMDBModel.GeneralInformation" Role="GeneralInformation" Multiplicity="0..1" />
+          <End Type="IDIMDBModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralInformation">
+              <PropertyRef Name="ArmyId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ArmyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RolePrivilege">
+          <Key>
+            <PropertyRef Name="RolePrivilegeId" />
+          </Key>
+          <Property Name="RolePrivilegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" />
+          <NavigationProperty Name="Menu" Relationship="IDIMDBModel.RolePrivileges_FK" FromRole="RolePrivilege" ToRole="Menu" />
+          <NavigationProperty Name="Role" Relationship="IDIMDBModel.FK_RolePrivileges1" FromRole="RolePrivilege" ToRole="Role" />
+        </EntityType>
+        <Association Name="RolePrivileges_FK">
+          <End Type="IDIMDBModel.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="IDIMDBModel.RolePrivilege" Role="RolePrivilege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="RolePrivilege">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePrivileges1">
+          <End Type="IDIMDBModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="IDIMDBModel.RolePrivilege" Role="RolePrivilege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RolePrivilege">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserPrivilege">
+          <Key>
+            <PropertyRef Name="UserPrivilegeId" />
+          </Key>
+          <Property Name="UserPrivilegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUser" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedUser" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateNo" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="IDIMDBModel.FK_UserPrivileges1" FromRole="UserPrivilege" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="IDIMDBModel.UserPrivileges_FK" FromRole="UserPrivilege" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserPrivileges1">
+          <End Type="IDIMDBModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="IDIMDBModel.UserPrivilege" Role="UserPrivilege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserPrivilege">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserPrivileges_FK">
+          <End Type="IDIMDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="IDIMDBModel.UserPrivilege" Role="UserPrivilege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPrivilege">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="UserRoleId" Type="Int32" />
+          <Property Name="SessionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RequestType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Agent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Browser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+          <Property Name="DeviceName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceMac" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="IDIMDBModel.FK_ActivityLogs_Applications" FromRole="ActivityLog" ToRole="Application" />
+          <NavigationProperty Name="User" Relationship="IDIMDBModel.FK_ActivityLogs_Users" FromRole="ActivityLog" ToRole="User" />
+          <Property Name="PersonnelCode" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ActivityLogs_Applications">
+          <End Type="IDIMDBModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="IDIMDBModel.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="ActivityLog">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityLogs_Users">
+          <End Type="IDIMDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="IDIMDBModel.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivityLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SlideImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AlternateText" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IDIMDBModelStoreContainer" CdmEntityContainer="IDIMDBEntities">
+          <EntitySetMapping Name="GeneralInformations">
+            <EntityTypeMapping TypeName="IDIMDBModel.GeneralInformation">
+              <MappingFragment StoreEntitySet="GeneralInformation">
+                <ScalarProperty Name="IsHomeNearBorder" ColumnName="IsHomeNearBorder" />
+                <ScalarProperty Name="TinNumber" ColumnName="TinNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsCSTTribal" ColumnName="IsCSTTribal" />
+                <ScalarProperty Name="IsTribal" ColumnName="IsTribal" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="IsCs" ColumnName="IsCs" />
+                <ScalarProperty Name="IsCivil" ColumnName="IsCivil" />
+                <ScalarProperty Name="IsInjuredLiberation" ColumnName="IsInjuredLiberation" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="GpfNo" ColumnName="GpfNo" />
+                <ScalarProperty Name="CastR" ColumnName="CastR" />
+                <ScalarProperty Name="ClassR" ColumnName="ClassR" />
+                <ScalarProperty Name="MissionStatus" ColumnName="MissionStatus" />
+                <ScalarProperty Name="IsActiveStatus" ColumnName="IsActiveStatus" />
+                <ScalarProperty Name="RdoNoB" ColumnName="RdoNoB" />
+                <ScalarProperty Name="RdoNo" ColumnName="RdoNo" />
+                <ScalarProperty Name="BjoNoB" ColumnName="BjoNoB" />
+                <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
+                <ScalarProperty Name="PayGradeDate" ColumnName="PayGradeDate" />
+                <ScalarProperty Name="ExpectedRetirementDate" ColumnName="ExpectedRetirementDate" />
+                <ScalarProperty Name="NextIncrementDate" ColumnName="NextIncrementDate" />
+                <ScalarProperty Name="CurrentBasic" ColumnName="CurrentBasic" />
+                <ScalarProperty Name="PreviousBasicR" ColumnName="PreviousBasicR" />
+                <ScalarProperty Name="MarriageDate" ColumnName="MarriageDate" />
+                <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+                <ScalarProperty Name="PresentDistrictId" ColumnName="PresentDistrictId" />
+                <ScalarProperty Name="PoliceVarificationStatusR" ColumnName="PoliceVarificationStatusR" />
+                <ScalarProperty Name="CoreId" ColumnName="CoreId" />
+                <ScalarProperty Name="ServiceTermsIdR" ColumnName="ServiceTermsIdR" />
+                <ScalarProperty Name="EmploymentTypeIdR" ColumnName="EmploymentTypeIdR" />
+                <ScalarProperty Name="PresentRankDate" ColumnName="PresentRankDate" />
+                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="MedicalCategoryId" ColumnName="MedicalCategoryId" />
+                <ScalarProperty Name="BloodGroupId" ColumnName="BloodGroupId" />
+                <ScalarProperty Name="TradeId" ColumnName="TradeId" />
+                <ScalarProperty Name="RankId" ColumnName="RankId" />
+                <ScalarProperty Name="IsFreedomFighter" ColumnName="IsFreedomFighter" />
+                <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+                <ScalarProperty Name="Phone3" ColumnName="Phone3" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherNameB" ColumnName="MotherNameB" />
+                <ScalarProperty Name="FatherRegimentNo" ColumnName="FatherRegimentNo" />
+                <ScalarProperty Name="FatherNameB" ColumnName="FatherNameB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="ParentUnitId" ColumnName="ParentUnitId" />
+                <ScalarProperty Name="BjoNo" ColumnName="BjoNo" />
+                <ScalarProperty Name="NameB" ColumnName="NameB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegimentNoB" ColumnName="RegimentNoB" />
+                <ScalarProperty Name="RegimentNo" ColumnName="RegimentNo" />
+                <ScalarProperty Name="ArmyId" ColumnName="ArmyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SetupUnits">
+            <EntityTypeMapping TypeName="IDIMDBModel.SetupUnit">
+              <MappingFragment StoreEntitySet="SetupUnit">
+                <ScalarProperty Name="UnitFullNameB" ColumnName="UnitFullNameB" />
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="Israb" ColumnName="Israb" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="UnitNameB" ColumnName="UnitNameB" />
+                <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+                <ScalarProperty Name="CoreId" ColumnName="CoreId" />
+                <ScalarProperty Name="UnitFullName" ColumnName="UnitFullName" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="SubOrganizationId" ColumnName="SubOrganizationId" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="IDIMDBModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="IconImagePath" ColumnName="IconImagePath" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ApplicationShortName" ColumnName="ApplicationShortName" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="ApplicationCode" ColumnName="ApplicationCode" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="IDIMDBModel.Menu">
+              <MappingFragment StoreEntitySet="Menus">
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="IDIMDBModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IDIMDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UniteList" ColumnName="UniteList" />
+                <ScalarProperty Name="IsAll" ColumnName="IsAll" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="IsLockOut" ColumnName="IsLockOut" />
+                <ScalarProperty Name="FailedLoginAttempts" ColumnName="FailedLoginAttempts" />
+                <ScalarProperty Name="OtpGeneratedDate" ColumnName="OtpGeneratedDate" />
+                <ScalarProperty Name="OtpCode" ColumnName="OtpCode" />
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PersonnelCode" ColumnName="PersonnelCode" />
+                <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ArmyId" ColumnName="ArmyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolePrivileges">
+            <EntityTypeMapping TypeName="IDIMDBModel.RolePrivilege">
+              <MappingFragment StoreEntitySet="RolePrivileges">
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RolePrivilegeId" ColumnName="RolePrivilegeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPrivileges">
+            <EntityTypeMapping TypeName="IDIMDBModel.UserPrivilege">
+              <MappingFragment StoreEntitySet="UserPrivileges">
+                <ScalarProperty Name="UpdateNo" ColumnName="UpdateNo" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserPrivilegeId" ColumnName="UserPrivilegeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityLogs">
+            <EntityTypeMapping TypeName="IDIMDBModel.ActivityLog">
+              <MappingFragment StoreEntitySet="ActivityLogs">
+                <ScalarProperty Name="PersonnelCode" ColumnName="PersonnelCode" />
+                <ScalarProperty Name="DeviceMac" ColumnName="DeviceMac" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="ActivityData" ColumnName="ActivityData" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlideImages">
+            <EntityTypeMapping TypeName="IDIMDBModel.SlideImage">
+              <MappingFragment StoreEntitySet="SlideImages">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="AlternateText" ColumnName="AlternateText" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="IDIMDBModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="true" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams />
+  </edmx:Designer>
+</edmx:Edmx>

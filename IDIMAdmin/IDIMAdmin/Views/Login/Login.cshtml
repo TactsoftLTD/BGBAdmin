@@ -1,0 +1,69 @@
+﻿@model IDIMAdmin.Models.User.LoginVm
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<div class="login-wrapper row">
+    <div class="col-md-5 bgb-left">
+        <div class="row">
+            <div class="login-left text-center">
+                <h2>Administration</h2>
+                <div class="bgb-logo">
+                    <img src="@Url.Content("~/Content/images/bgb-logo.png")" alt="BGB">
+                </div>
+                <h1>BGB</h1>
+                <h3>Border Guard Bangladesh</h3>
+                <p>
+                    Pilkhana, Dhaka-1205, Bangladesh
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="login-right">
+            <div class="form-top">
+                <span>
+                    <img src="@Url.Content("~/Content/images/idim.png")" alt="IDIM">
+                </span>
+            </div>
+            <h1 class="form-heading">Sign In</h1>
+            <div class="row">
+                @using (Html.BeginForm("Login", "Login", new { r = Request.Params["r"] }, FormMethod.Post, new {autoComplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="col-sm-12">
+                        @Html.ValidationSummary()
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        @Html.LabelFor(model => model.Username)
+                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Enter username", @autofocus="autofocus"})
+                    </div>
+                    <div class="col-sm-12">
+                        @Html.LabelFor(model => model.Password)
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter password" })
+                    </div>
+                    @*<div class="col-sm-12 form-bottom">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="#">Privacy policy</a>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <a href="#">Forget Password</a>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="col-sm-6 btn-submit">
+                        <input type="submit" value="Sign In">
+                    </div>
+                }
+            </div>
+            <div class="login-right-bottom text-right">
+                @Html.Partial("Partial/_Footer")
+            </div>
+        </div>
+    </div>
+</div>
+

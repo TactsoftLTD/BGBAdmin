@@ -1,0 +1,139 @@
+﻿@model IDIMAdmin.Models.User.LoginPinVm
+@using IDIMAdmin.Extentions
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "OTP";
+    var message = ViewBag.Text as Message;
+}
+<style>
+    .countdown-container {
+        margin-top: 30px;
+    }
+
+    .countdown-item {
+        margin: 0 6px;
+        font-size: 14px;
+        color: #333;
+    }
+
+        .countdown-item span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+        }
+</style>
+
+<div class="login-wrapper pin-page row">
+    <div class="col-md-5 bgb-left">
+        <div class="row">
+            <div class="login-left text-center">
+                <h2>Administration</h2>
+                <div class="bgb-logo">
+                    <img src="@Url.Content("~/Content/images/bgb-logo.png")" alt="BGB">
+                </div>
+                <h1>BGB</h1>
+                <h3>Border Guard Bangladesh</h3>
+                <p>
+                    Pilkhana, Dhaka-1205, Bangladesh
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="login-right">
+            <div class="form-top">
+                <span>
+                    <img src="@Url.Content("~/Content/images/idim.png")" alt="IDIM">
+                </span>
+            </div>
+            <div class="form-heading">
+                <h1>Confirm OTP</h1>
+                <h3>Enter the OTP sent to your Email </h3>
+            </div>
+
+            @if (message != null)
+            {
+                <div class="form-heading">
+                    <div class="alert alert-@message.Type alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="fa @message.Icon"></i>
+
+                        @message.Text
+                    </div>
+                </div>
+            }
+
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <p>
+                        Time Remaining : 
+                        <span id="timer"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                @using (Html.BeginForm("Pin", "Login", new { r = Request.Params["r"] }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="col-sm-12 input-pin">
+                        @Html.TextBoxFor(model => model.PinCode[0], new { @class = "form-control", tabindex = 1, maxlength = 1, autofocus = "autofocus" })
+                        @Html.TextBoxFor(model => model.PinCode[1], new { @class = "form-control", tabindex = 2, maxlength = 1 })
+                        @Html.TextBoxFor(model => model.PinCode[2], new { @class = "form-control", tabindex = 3, maxlength = 1 })
+                        @Html.TextBoxFor(model => model.PinCode[3], new { @class = "form-control", tabindex = 4, maxlength = 1 })
+                    </div>
+                    <div class="col-sm-12" style="display: flex; align-items: center; margin-top: 15px;">
+                        <div class="btn-submit" style="margin: 0px">
+                            <input type="submit" value="Confirm" tabindex="5">
+                        </div>
+                        <div class="resend-pin" style="margin: 0px; margin-left: 15px;">
+                            <a href="@Url.Action("Resend","Login")">
+                                Resend OTP
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="login-right-bottom text-right">
+                @Html.Partial("Partial/_Footer")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var timerDuration = 300; // Timer duration in seconds (5 minutes)
+
+        function startTimer() {
+            var startTime = Math.floor(Date.now() / 1000); // Get the current timestamp in seconds
+
+            function updateTimer() {
+                var currentTime = Math.floor(Date.now() / 1000); // Get the current timestamp in seconds
+                var elapsedTime = currentTime - startTime;
+                var remainingTime = timerDuration - elapsedTime;
+
+                if (remainingTime <= 0) {
+                    // Timer has reached 0, perform necessary actions
+                    $('#timer').text("0 minutes 0 seconds"); // Display 0 minutes 0 seconds
+                    // Add your code here for handling when the timer expires
+                } else {
+                    var minutes = Math.floor(remainingTime / 60);
+                    var seconds = remainingTime % 60;
+                    $('#timer').text(minutes + " minutes " + seconds + " seconds");
+
+                    // Update the timer every second
+                    setTimeout(updateTimer, 1000);
+                }
+            }
+
+            updateTimer(); // Update the timer immediately
+        }
+
+        // Start the timer
+        startTimer();
+
+    });
+</script>

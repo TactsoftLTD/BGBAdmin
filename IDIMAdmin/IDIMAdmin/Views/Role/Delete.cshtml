@@ -1,0 +1,110 @@
+﻿@model IDIMAdmin.Models.User.RoleVm
+@{
+    ViewBag.Title = "Role";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Role</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Role")">
+                        <i class="fa fa-list"></i>
+                        Role
+                    </a>
+                </li>
+                <li class="active">
+                    <strong>Delete</strong>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+                <h2 class="title pull-left">Delete</h2>
+                <div class="actions panel_actions pull-right">
+                    <a href="@Url.Action("Create","Role")" class="btn btn-success">
+                        <i class="fa fa-plus"></i> Create New
+                    </a>
+                    <a href="@Url.Action("Edit","Role", new { id=Model.RoleId})" class="btn btn-primary">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+
+                    <a href="@Url.Action("List","Role")" class="btn btn-default">
+                        <i class="fa fa-list"></i> List
+                    </a>
+                    <a class="box_toggle fa fa-chevron-down"></a>
+                </div>
+            </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RoleId, new { @class = "col-md-2 form-label" })
+                                    <div class="controls col-md-10">
+                                        : @Html.DisplayFor(m => m.RoleId)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 form-label" })
+                                    <div class="controls col-md-10">
+                                        : @Html.Raw("<span style='font-weight:bold'>" + @Html.DisplayFor(m => m.Name) + "</span>")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ApplicationName, new { @class = "col-md-2 form-label" })
+                                    <div class="controls col-md-10">
+                                        : @Html.DisplayFor(m => m.ApplicationName)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-2 form-label" })
+                                    <div class="controls col-md-10">
+                                        : @Html.DisplayFor(m => m.IsActive)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    @using (Html.BeginForm("Delete", "Role", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("RoleId")
+
+                        <a href="@Url.Action("List", "Role")" class="btn">Cancel</a>
+                        <div class="pull-right">
+                            <input type="submit" class="btn btn-success" value="Delete" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

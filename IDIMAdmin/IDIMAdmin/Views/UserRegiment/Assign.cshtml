@@ -1,0 +1,96 @@
+﻿@model IDIMAdmin.Models.User.UserRegimentVm
+@{
+    ViewBag.Title = "Assign Regiment";
+}
+
+<div id="message"></div>
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Assign Regiment</h1>
+        </div>
+
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-list" aria-hidden="true"></i>  Assign Regiment
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Assign</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("List","UserRegiment")" class="btn btn-default">
+                    <i class="fa fa-list"></i> List
+                </a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    @using (Html.BeginForm("Assign", "UserRegiment", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "user-regiment-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.UserId, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.UserId, new { @class = "userId" })
+                                        @Html.ValidationMessageFor(model => model.UserId)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ArmyId, new { @class = "col-md-4 form-label required" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.ArmyId, new { @class = "armyId" })
+                                        @Html.ValidationMessageFor(model => model.ArmyId)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pull-right">
+                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="reset" class="btn" value="Clear" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var assignSelector = "#user-regiment-form";
+
+            $(assignSelector).submit(function (e) {
+                e.preventDefault();
+
+                var success = ajaxCallDetail($(this));
+                if (success === true) {
+                    $(assignSelector).trigger("reset");
+                    $('.select2').val('').trigger('change');
+                }
+                return false;
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<IDIMAdmin.Models.User.DeviceVm>
+@{
+    ViewBag.Title = "Device";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Device</h1>
+        </div>
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li class="active">
+                    <strong>Device</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-lg-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">List</h2>
+            <div class="actions panel_actions pull-right">
+                <a href="@Url.Action("Create","Device")" class="btn btn-success">
+                    <i class="fa fa-plus"></i> Create New
+                </a>
+                <a class="box_toggle fa fa-chevron-down"></a>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="DataGrid" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.DeviceId)</th>
+                                <th>@Html.DisplayNameFor(m => m.DeviceName)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var v in Model)
+                            {
+                                <tr>
+                                    <td>@v.DeviceId</td>
+                                    <td>@v.DeviceName</td>
+                                    <td>
+                                        @*<a href="@Url.Action("User", "Device", new {id = v.DeviceId})">
+                                            <span class="label label-info"><i class="fa fa-info"></i> User</span>
+                                        </a>*@
+                                        <a href="@Url.Action("Detail", "Device", new {id = v.DeviceId})">
+                                            <span class="label label-info"><i class="fa fa-info"></i> Detail</span>
+                                        </a>
+                                        <a href="@Url.Action("Edit", "Device", new {id = v.DeviceId})">
+                                            <span class="label label-primary"><i class="fa fa-edit"></i> Edit</span>
+                                        </a>
+                                        <a href="@Url.Action("Delete", "Device", new {id = v.DeviceId})">
+                                            <span class="label label-danger"><i class="fa fa-remove"></i> Remove</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#DataGrid').DataTable({
+                "aaSorting": [],
+                "columns": [
+                    {className:"id"},
+                    null,
+                    { width:"205px", "orderable": false }
+                ]
+            });
+        });
+    </script>
+}
+

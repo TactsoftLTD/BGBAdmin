@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IDIMAdmin.Models.User.ApplicationVm>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Application";
+}
+
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">Application</h1>
+        </div>
+
+        <div class="pull-right hidden-xs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i>Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-list" aria-hidden="true"></i>  Application
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        @foreach (var application in Model)
+        {
+            <div class="landing-block">
+                <a href="@Url.Content(application.Url ?? "#")" target="_blank">
+                    <i class="fa fa-@application.Icon" style="color: #@application.Color"></i>
+                    <p>@application.ApplicationShortName</p>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section styles
+{
+    <link href="~/Content/landing.css" rel="stylesheet" />
+}
